@@ -2,9 +2,9 @@
 library(tidyverse)
 library(edgeR)
 
-sample_info <- readxl::read_xlsx('analysis/sampleInfo_simple_01.15.24.xlsx',col_names = c('sample_id','species','drainage','ecotype'))
+sample_info <- readxl::read_xlsx('sampleInfo_simple_01.15.24.xlsx',col_names = c('sample_id','species','drainage','ecotype'))
 
-wild_data <- read_csv(file = 'data_fromKerryAnalysis/mRNA/raw_counts/gene_count_matrix-2019-10-01_no_STRG.csv') %>% 
+wild_data <- read_csv(file = 'data/mRNA/raw_counts/gene_count_matrix-2019-10-01_no_STRG.csv') %>% 
   pivot_longer(-1,names_to = 'sample',values_to = 'count') %>% 
   filter(sample %in% sample_info$sample_id) %>% 
   left_join(sample_info,by=c('sample'='sample_id')) %>% 
@@ -61,8 +61,8 @@ res.df.sig <- res.df %>% filter(FDR<0.05)
 
 # Add human annotation ----------------------------------------------------
 
-pmex_name_convert <- read_csv('data_fromKerryAnalysis/reference/PmexGeneNameMatching.csv',skip = 1)
-human_annot <- readxl::read_xlsx('data_fromKerryAnalysis/reference/mec14360-sup-0002-tables2.xlsx') %>% janitor::clean_names() %>% 
+pmex_name_convert <- read_csv('PmexGeneNameMatching.csv',skip = 1)
+human_annot <- readxl::read_xlsx('mec14360-sup-0002-tables2.xlsx') %>% janitor::clean_names() %>% 
   select(gene_id,gene_name,subject_sequence_id,protein_annotations)
 
 res.df_fullInfo <- res.df %>% 
@@ -83,8 +83,8 @@ res.df.sig_fullInfo <- res.df.sig %>%
   unique()
 
 
-write_tsv(res.df_fullInfo,'analysis/0_DEanalysis_new/mRNA_DEResults_All_01.15.24.tsv')
-write_tsv(res.df.sig_fullInfo,'analysis/0_DEanalysis_new/mRNA_DEResults_Sig_01.15.24.tsv')
+# write_tsv(res.df_fullInfo,'analysis/0_DEanalysis_new/mRNA_DEResults_All_01.15.24.tsv')
+# write_tsv(res.df.sig_fullInfo,'analysis/0_DEanalysis_new/mRNA_DEResults_Sig_01.15.24.tsv')
 
 
 
@@ -99,23 +99,9 @@ supp_table_s8 <- res.df.sig_fullInfo %>%
          `Log2 Fold Change`=logFC,
          `p-value`=PValue,
          FDR)
-write_tsv(supp_table_s8,'analysis/0_DEanalysis_new/supp_table_s8_01.30.24.tsv')
+# write_tsv(supp_table_s8,'analysis/0_DEanalysis_new/supp_table_s8_01.30.24.tsv')
 
 
 #
-
-boxplot(as.numeric(raw_counts["gene11852", ]) ~ group)
-
-
-# Compare to previous results ---------------------------------------------
-
-de.old <- read_csv('data_fromKerryAnalysis/mRNA/edgeR_wgcna/5_habitat_qlf_S_vs_NS_WITH_ANNOTATIONS.csv') %>% 
-  janitor::clean_names() %>% 
-  select(-x1) %>% 
-  filter(fdr<0.05)
-
-length(row.names(res.df.sig) %in% de.old$gene_id) / length(row.names(res.df.sig))
-length(de.old$gene_id)
-
 
 ####

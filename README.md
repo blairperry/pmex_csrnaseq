@@ -284,7 +284,26 @@ The following R script contains code used to:
 
 Link to Rscript: [5a_peakAnnotationExploration_01.15.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/5a_peakAnnotationExploration_01.15.24.R)
 
-### b. Identification of putative enhancer regions
+### b. Identification and analysis of putative enhancer regions
+
+The following R script contains code used to:
+- Parse and summarize csRNA peak annotations
+- Identify putative enhancer regions defined as csRNAseq peaks that are distal from protein coding genes and comprised of unstable transcripts
+
+Link to Rscript: [5b_1_putEnhIdentification_01.16.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/5b_1_putEnhIdentification_01.16.24.R)
+
+Using the bedfile of all putative enhancer regions identified above, the following commands were used to expand each region by 500 kbp in each direction and intersect with a bedfile of gene TSS positions. Genes found to be located within 500 kbp of a putative enhancer are considered potential target genes that are evaluated further below. 
+
+```bash
+# Sort bedfile of putative enhancer regions
+bedtools sort -i putativeEnhancerPeaks_pmex_01.12.24.bed > putativeEnhancerPeaks_pmex_01.12.24.sort.bed
+
+# Expand each putative enhancer region by 500 kbp in both directions
+bedtools slop -b 500000 -i putativeEnhancerPeaks_pmex_01.12.24.sort.bed -g ../../data/reference/chrNameLength.txt > putativeEnhancerPeaks_pmex_01.12.24.500kbSlop.bed
+
+# Intersect with a bed file of gene TSS positions 
+bedtools intersect -a putativeEnhancerPeaks_pmex_01.12.24.500kbSlop.bed -b ../../data/reference/tss.bed -wa -wb > putativeEnhancerPeaks_pmex_01.12.24.500kbSlop.tssIntersect.txt
+```
 
 
 ---
