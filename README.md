@@ -19,9 +19,9 @@ For questions, please contact blair.perry(at)wsu.edu.
 5. [Joint analyses of csRNA and mRNA data](#5-joint-analyses-of-csrna-and-mrna-data)
 	- a. [Characterization of transcript initiation annotations](#a-characterization-of-transcript-initiation-annotations)
 	- b. [Identification of putative enhancer regions](#b-identification-and-analysis-of-putative-enhancer-regions)
-1. TF binding site enrichment analyses
-	- a. Promoter-TSS csRNA peaks
-	- b. Putative enhancers 
+1. [TF binding site enrichment analyses](#6-tf-binding-site-enrichment-analyses)
+	- [a. Promoter-TSS csRNA peaks](#a-promoter-tss-csrna-peaks)
+	- [b. Putative enhancers](#b-putative-enhancers)
 
 
 ---
