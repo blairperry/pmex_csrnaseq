@@ -14,11 +14,12 @@ For questions, please contact blair.perry(at)wsu.edu.
 ## Contents
 1. [cRNA-seq trimming, mapping, peak calling, and peak annotation](#1-crna-seq-qc-mapping-peak-calling-and-annotation)
 2. [mRNA-seq trimming and mapping ](#2-mrna-seq-trimming-and-mapping)
-3. Analyses of differential transcript initiation (csRNA) and gene expression (mRNA)
-4. Joint analyses of csRNA and mRNA data
+3. Analyses of differential transcript initiation (csRNA) 
+4. Analyses of differential gene expression (mRNA)
+5. Joint analyses of csRNA and mRNA data
 	1. Characterization of transcript initiation annotations
 	2. Identification of putative enhancer regions
-5. TF binding site enrichment analyses
+6. TF binding site enrichment analyses
 
 
 ---
@@ -252,6 +253,20 @@ grep -v "STRG" gene_count_matrix.csv > gene_count_matrix_no_STRG.csv
 
 ```
 
+---
+## 3. Analyses of differential transcript initiation (csRNA) 
+
+The following R script contains code used to:
+- Filter csRNA-seq count data 
+- Perform analysis of differential transcript initiation  between sulfidic and non-sulfidic populations using edgeR
+- Plot heatmaps of csRNA-seq peaks
+- Assess differential initiation in candidate H2S detox genes 
+
+Link to Rscript: [3_csRNA_DiffInitiation_01.15.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/3_csRNA_DiffInitiation_01.15.24.R)
+
+
+---
+## BELOW IS NOT YET UPDATED
 ---
 #### Gene Ontology (GO) and KEGG Pathway Overrepresentation Analysis of Differentially Expressed Genes
 
