@@ -305,6 +305,18 @@ bedtools slop -b 500000 -i putativeEnhancerPeaks_pmex_01.12.24.sort.bed -g ../..
 bedtools intersect -a putativeEnhancerPeaks_pmex_01.12.24.500kbSlop.bed -b ../../data/reference/tss.bed -wa -wb > putativeEnhancerPeaks_pmex_01.12.24.500kbSlop.tssIntersect.txt
 ```
 
+The following R script contains code used to:
+- Identify putative enhancer regions with evidence of differential initiation (i.e., differential activity) in csRNA-seq edgeR analyses described above.
+- Identify putative enhancers and their putative target genes with positively correlated log2 fold-changes (i.e., shared upregulation or downregulation in the sulfidic ecotype compared to nonsulfidic)
+- Run linear regression and characterize enhancer-gene pairs that fall within 1 standardized residual of the resulting regression line (i.e., highly correlated enhancer-gene pairs)
+- Generate enhancer-gene correlation dot plot for Figure 5. 
+- Identify candidate H2S detox genes putatively targeted by a putative enhancer. 
+
+Link to Rscript: [5b_2_putEnhAnalysis_02.02.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/5b_2_putEnhAnalysis_02.02.24.R)
+
+---
+
+
 
 ---
 ## BELOW IS NOT YET UPDATED
