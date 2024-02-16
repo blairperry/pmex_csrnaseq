@@ -20,6 +20,8 @@ For questions, please contact blair.perry(at)wsu.edu.
 	- a. [Characterization of transcript initiation annotations](#a-characterization-of-transcript-initiation-annotations)
 	- b. [Identification of putative enhancer regions](#b-identification-and-analysis-of-putative-enhancer-regions)
 1. TF binding site enrichment analyses
+	- a. Promoter-TSS csRNA peaks
+	- b. Putative enhancers 
 
 
 ---
@@ -316,4 +318,49 @@ Link to Rscript: [5b_2_putEnhAnalysis_02.02.24.R](https://github.com/blairperry/
 
 ---
 
+## 6. TF binding site enrichment analyses
 
+### a. Promoter-TSS csRNA peaks
+
+HOMER's findMotifsGenome tool was used to to get regions 50 bp upstream through 150 bp downstream of all peaks, removing any with high repeat content. 
+```bash
+findMotifsGenome.pl merged.tss.txt GCF_001443325.1_P_mexicana-1.0_genomic.fna ./ -size -150,50 -dumpFasta
+# Result fasta is target.fa
+```
+
+The following R script contains code used to:
+- Generate fastas of promoter-TSS csRNAseq peaks that are either:
+	- upregulated in H2S and located in the promoter of an upregulated gene
+	- downregulated in H2S and located in the promoter of a downregulated gene
+- Generate a fasta of promoter-TSS csRNAseq peaks that are NOT differentially initiated and are located in the promoter of a gene that is not differentially expressed - this is used as the background in TFBS enrichment analyses
+- Read in and parse result tables from CiiiDER TFBS enrichment analysis
+- Generate dotplots of top enriched TF binding sites for Figure 4. 
+- Identify TF genes found to be differentially expressed between ecotypes and enriched for binding sites in promoter-TSS peaks. 
+
+Link to Rscript: [6a_promTSS_TFBS_01.17.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/6a_promTSS_TFBS_01.17.24.R)
+
+### b. Putative enhancers 
+
+The following R script contains code used to:
+- Generate bedfiles for putative enhancers that are either:
+	- upregulated in H2S and inferred to target an upregulated gene
+	- downregulated in H2S and inferred to target a downregulated gene
+- Generate a bedfile of 1000 putative enhancers that are not differentially initiated and do not target a differentially expressed gene. 
+- Export the bedfiles so that bedtools can be used to pull out fasta sequences (*see commands below*)
+- Read in and parse result tables from CiiiDER TFBS enrichment analysis
+- Generate dotplots of top enriched TF binding sites for Figure 5. 
+- Identify TF genes found to be differentially expressed between ecotypes and enriched for binding sites in putative enhancers. 
+
+Link to Rscript: [6b_enhancer_TFBS_02.04.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/6b_enhancer_TFBS_02.04.24.R)
+
+The following command was used to extract fasta sequences for upregulated and downregulated putative enhancers for use in CiiiDER TFBS enrichment analyses:
+```bash
+mkdir fasta
+
+bedtools getfasta -fi ../../data/reference/GCF_001443325.1_P_mexicana-1.0_genomic.fna -bed corr_enhancers_upreg_01.19.24.bed -name > fasta/corr_enhancers_upreg_01.19.24.fa
+
+bedtools getfasta -fi ../../data/reference/GCF_001443325.1_P_mexicana-1.0_genomic.fna -bed corr_enhancers_dwreg_01.19.24.bed -name > fasta/corr_enhancers_dwreg_01.19.24.fa
+
+bedtools getfasta -fi ../../data/reference/GCF_001443325.1_P_mexicana-1.0_genomic.fna -bed background_enhancers_01.15.24.bed -name > fasta/background_enhancers_01.19.24.fa
+
+```
