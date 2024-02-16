@@ -16,9 +16,9 @@ For questions, please contact blair.perry(at)wsu.edu.
 2. [mRNA-seq trimming and mapping ](#2-mrna-seq-trimming-and-mapping)
 3. [Analyses of differential transcript initiation (csRNA)](#3-analyses-of-differential-transcript-initiation-csrna)
 4. [Analyses of differential gene expression (mRNA)](#4-analyses-of-differential-gene-expression-mrna)
-5. Joint analyses of csRNA and mRNA data
-	a. Characterization of transcript initiation annotations
-	b. Identification of putative enhancer regions
+5. [Joint analyses of csRNA and mRNA data](#5-joint-analyses-of-csrna-and-mrna-data)
+	a. [Characterization of transcript initiation annotations](#a-characterization-of-transcript-initiation-annotations)
+	b. [Identification of putative enhancer regions](#b-identification-and-analysis-of-putative-enhancer-regions)
 6. TF binding site enrichment analyses
 
 
