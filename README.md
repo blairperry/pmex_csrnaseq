@@ -15,10 +15,10 @@ For questions, please contact blair.perry(at)wsu.edu.
 1. [cRNA-seq trimming, mapping, peak calling, and peak annotation](#1-crna-seq-qc-mapping-peak-calling-and-annotation)
 2. [mRNA-seq trimming and mapping ](#2-mrna-seq-trimming-and-mapping)
 3. [Analyses of differential transcript initiation (csRNA)](#3-analyses-of-differential-transcript-initiation-csrna)
-4. Analyses of differential gene expression (mRNA)
+4. [Analyses of differential gene expression (mRNA)](#4-analyses-of-differential-gene-expression-mrna)
 5. Joint analyses of csRNA and mRNA data
-	1. Characterization of transcript initiation annotations
-	2. Identification of putative enhancer regions
+	a. Characterization of transcript initiation annotations
+	b. Identification of putative enhancer regions
 6. TF binding site enrichment analyses
 
 
@@ -259,11 +259,12 @@ grep -v "STRG" gene_count_matrix.csv > gene_count_matrix_no_STRG.csv
 The following R script contains code used to:
 - Filter csRNA-seq count data 
 - Perform analysis of differential transcript initiation between sulfidic and non-sulfidic populations using edgeR
-- Plot heatmaps of csRNA-seq peaks
+- Plot heatmaps of csRNA-seq peaks for Figure 2. 
 - Assess differential initiation in candidate H2S detox genes 
 
 Link to Rscript: [3_csRNA_DiffInitiation_01.15.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/3_csRNA_DiffInitiation_01.15.24.R)
 
+---
 ## 4. Analyses of differential gene expression (mRNA)
 
 The following R script contains code used to:
@@ -271,6 +272,20 @@ The following R script contains code used to:
 - Perform analysis of differential gene expression between sulfidic and non-sulfidic populations using edgeR
 
 Link to Rscript: [4_mRNA_DiffExpression_01.15.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/4_mRNA_DiffExpression_01.15.24.R)
+
+---
+## 5. Joint analyses of csRNA and mRNA data
+### a. Characterization of transcript initiation annotations
+The following R script contains code used to:
+- Summarize annotations of differentially initiated peaks (i.e., whether peaks are located in promoters, exons, etc.)
+- Identify differentially initiated peaks (csRNA) associated with differentially expressed genes (mRNA)
+- Test whether specific subsets of differentially initiated peaks (e.g., DI peaks associated with DE genes, DI peaks associated with non-DE genes) exhibit unique distributions of peak annotations
+- Generate barplots and alluvial plots for Figure 3. 
+
+Link to Rscript: [5a_peakAnnotationExploration_01.15.24.R](https://github.com/blairperry/pmex_csrnaseq/blob/main/analysis/5a_peakAnnotationExploration_01.15.24.R)
+
+### b. Identification of putative enhancer regions
+
 
 ---
 ## BELOW IS NOT YET UPDATED
