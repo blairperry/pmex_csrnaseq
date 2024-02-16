@@ -1,0 +1,49 @@
+cmd = findcsRNATSS.pl /data/kelley/projects/kerry/pmex_gills_csrna_2021/04_homertools_maketagdirectory/KellyLab_MX76_csRNA_DB1649_S21_R1_001_tagDir -o MX76 -i /data/kelley/projects/kerry/pmex_gills_csrna_2021/04_homertools_maketagdirectory/KellyLab_MX76_input_DB1650_S22_R1_001_tagDir -rna /data/kelley/projects/kerry/pmex_gills_csrna_2021/04_homertools_maketagdirectory/MX76_tagDir -gtf /data/kelley/projects/kerry/pmex_reference/GCF_001443325.1_P_mexicana-1.0_genomic.gtf -genome /data/kelley/projects/kerry/pmex_reference/GCF_001443325.1_P_mexicana-1.0_genomic.fna -ntagThreshold 7
+
+Total csRNA reads: 15449574.0 (/data/kelley/projects/kerry/pmex_gills_csrna_2021/04_homertools_maketagdirectory/KellyLab_MX76_csRNA_DB1649_S21_R1_001_tagDir)
+Total input reads: 3797256.0 (/data/kelley/projects/kerry/pmex_gills_csrna_2021/04_homertools_maketagdirectory/KellyLab_MX76_input_DB1650_S22_R1_001_tagDir)
+Total rna reads: 4778296.0 (/data/kelley/projects/kerry/pmex_gills_csrna_2021/04_homertools_maketagdirectory/MX76_tagDir)
+
+total putative TSS clusters	48247
+Valid TSS clusters	28846
+	total over input	29329
+	total over rna  	46698
+	total over both 	28846
+
+Fraction Promoter-Distal TSS clusters: 48.75%
+Fraction of stable transcript TSS clusters: 48.73%
+Fraction of bidirectional TSS clusters: 54.14%
+Regulatory Element Configurations of each TSS cluster:
+	SS: 1861 (6.45%)
+	SU: 4638 (16.08%)
+	S: 7559 (26.20%)
+	US: 2259 (7.83%)
+	UU: 6860 (23.78%)
+	U: 5669 (19.65%)
+
+vs. Input (-i):
+	log2 fold vs. input: 3.66114732942681
+	Maximum CDF difference: 0.485354607604052
+	Total TP (tss) regions: 23709
+	Total FP (exon) regions: 5147
+
+vs. RNA-seq (-rna):
+	log2 fold vs. rna: 1.51047724919848
+	Maximum CDF difference: 0.914764148188522
+	Total TP (tss) regions: 24196
+	Total FP (exon) regions: 61993
+Normalized tag threshold used for initial TSS cluster calls: 7
+
+Read threshold for input/RNA distribution: 7
+Thresholds for enrichment over input and rna determined by max CDF difference
+PseudoCount for fold change stats: 1
+Size of TSS region for read counting: 150
+Size of region to assess RNAseq contamiation: -150,-10
+Size of region to assess RNAseq stability: -100,500
+Size of region to assess antisense levels: -500,100
+Distance from annotated promoter considered distal: 500
+Normalized RNAseq signal to be considered stable: 2
+Normalized antisense signal to be considered bidirectional: 2
+
+Random number used: 0.615275794248195
+
